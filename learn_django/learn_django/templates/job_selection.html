@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+	<div class = 'main_body_div'>
+		<div class="logged_in_div">
+			<br>
+			<p>
+				Active User: <b>{{ uname.upper }}</b>
+			</p>
+			<p>
+				Active Time: <b>* Time *</b>
+			</p>
+
+			<button><a href="{% url 'login' %}">Logout</a></button>
+		</div>
+		<div class="job_sel_div">
+			<div class="job_sel_sub_div">
+				<br>
+				<div class="tabs">
+					<form method= 'post' action="{% url 'plots' %}">
+						<div class="running">
+							<input type="radio" id="tab1" name="tab_control" value="Running" checked>
+							<label for="tab1">Running Jobs</label>
+							<div class="content">
+								<p>Select the job from available job IDs:</p>
+								<div class="user_and_job">
+									<label for="users">User:</label>
+									<br>
+									<select name="users" id="users">
+										{% for user in user_jobs_dict.keys %}
+											<option value="{{ user }}">{{ user }}</option>
+										{% endfor %}
+									</select>
+									<br><br>
+									<label for="jobs">Job ID:</label>
+									<br>
+									<select name="jobs" id="jobs">
+										<option value="select_job">Select Job ID</option>
+										{% for user, vals in user_jobs_dict.items %}
+											{% for val in vals %}
+												<option value="{{ user }}">{{ val }}</option>
+											{% endfor %}
+										{% endfor %}
+									</select>
+								</div>
+								<br><br>
+								<p>Details of the selected job:</p>
+								<div class="job_details">
+		<!--							<form method= 'post' action="{% url 'plots' %}" >-->
+										{% csrf_token %}
+										<label for="job_name">Job Name:</label><br>
+										<input type="text" id="job_name" name="job_name"><br><br>
+										<label for="work_dir">Working Directory:</label><br>
+										<input type="text" id="work_dir" name="work_dir"><br><br>
+										<label for="cores">Number of Cores:</label><br>
+										<input type="text" id="cores" name="cores"><br><br>
+										<button type="submit">Track This Job</button>
+		<!--							</form>-->
+								</div>
+							</div>
+						</div>
+						<div class="completed">
+							<input type="radio" id="tab2" name="tab_control" value="Completed">
+							<label for="tab2">Completed Jobs</label>
+							<div class="content">
+								<p>Provide details of the completed job:</p>
+								<div class="job_details">
+		<!--							<form method= 'post' action="{% url 'plots' %}" >-->
+										{% csrf_token %}
+										<label for="job_name_completed">Job Name:</label><br>
+										<input type="text" id="job_name_completed" name="job_name_completed" placeholder="file"><br><br>
+										<label for="work_dir_completed">Working Directory:</label><br>
+										<input type="text" id="work_dir_completed" name="work_dir_completed" placeholder="/nfs/.. .. ../working_dir"><br><br>
+										<label for="cores_completed">Number of Cores:</label><br>
+										<input type="text" id="cores_completed" name="cores_completed" placeholder="32"><br><br>
+										<button type="submit">Track This Job</button>
+		<!--							</form>-->
+
+								</div>
+							</div>
+						</div>
+					</form>
+					{% if messages %}
+						{%for message in messages%}
+						<h5 style=" color:red">{{ message }}</h5> <br>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+
+{% endblock %}

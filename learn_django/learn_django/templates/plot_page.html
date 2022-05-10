@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+	<div class = 'main_body_div'>
+		<div class="logged_in_div">
+			<br>
+			<p>
+				Active User: <b>* user *</b>
+			</p>
+			<p>
+				Active Time: <b>* Time *</b>
+			</p>
+
+			<button><a href="{% url 'login' %}">Logout</a></button>
+		</div>
+		<div class="plots_div">
+			<div class="plot_sub_div">
+				<br>
+				<div class="tabs">
+					<input type="radio" id="tab1" name="tab_control" checked>
+					<label for="tab1">Convergence Plots</label>
+					<div class="content">
+						<div style="width:100%;">
+							{% load plotly_dash %}
+							{% plotly_app name="Convergence" %}
+						</div>
+					</div>
+
+					<input type="radio" id="tab2" name="tab_control">
+					<label for="tab2">Contact Plots</label>
+					<div class="content">
+
+					</div>
+
+					<input type="radio" id="tab3" name="tab_control">
+					<label for="tab3">Contour Plots</label>
+					<div class="content">
+						<p>
+							Content3: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea dolorem sequi, quo tempore in eum obcaecati atque quibusdam officiis est dolorum minima deleniti ratione molestias numquam. Voluptas voluptates quibusdam cum?
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+
+{% endblock %}

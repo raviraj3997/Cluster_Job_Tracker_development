@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+	<div class = 'main_body_div'>
+		<form class="login_form" method= 'post' action="{% url 'joblist' %}">
+			{% csrf_token %}
+			<label for="uname"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" required>
+
+			<label for="psw"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" required>
+
+			<button type="submit">Login</button>
+			{% if messages %}
+				{%for message in messages%}
+				<h5 style=" color:red">{{ message }}</h5> <br>
+				{% endfor %}
+			{% endif %}
+
+		</form>
+
+	</div>
+</body>
+
+{% endblock %}

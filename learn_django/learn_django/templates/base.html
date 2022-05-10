@@ -1,0 +1,355 @@
+{% load static%}
+<!doctype html>
+<html lang="en">
+	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href='{% static "css/css_style.css" %}'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function()
+			{
+				var $uservar = $("#users");
+				var $jobvar = $("#jobs");
+
+				$options = $jobvar.find('option');
+				$uservar.on('change', function()
+				{
+					$jobvar.html($options.filter('[value="'+this.value+'"]'));
+				}).trigger('change');
+			});
+		</script>
+		<style>
+
+body {
+    padding : 0;
+    margin : 0;
+}
+
+.header_div {
+    margin: auto;
+    padding: 0;
+    width: 80%;
+
+    border: 5px solid #ff0000;
+}
+
+.image_div {
+    padding : 0;
+    margin : 0;
+    width: 19%;
+    float: left;
+    text-align: center;
+}
+
+.image_div img {
+    padding : auto;
+    margin : auto;
+    width: 80%;
+}
+
+.title_div {
+    padding : 0;
+    margin : 0;
+    width: 59%;
+    float: left;
+    text-align: center;
+    padding: 5.5px 7px;
+}
+
+.ul_div {
+    padding : 0;
+    margin : 0;
+    width: 19%;
+    float: left;
+}
+
+.ul_div .ul_nav {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.ul_div .ul_nav li {
+  float: right;
+}
+
+.ul_div .ul_nav li a {
+  display: block;
+  text-align: center;
+  padding: 18px 10px;
+  text-decoration: none;
+  font-size: 20px
+}
+
+.ul_div .ul_nav li a:hover {
+    color: gray;
+}
+.header_div hr{
+    width: 100%;
+}
+
+.main_body_div {
+    margin: auto;
+    padding: 0;
+    width: 80%;
+}
+
+.login_form {
+    margin: auto;
+    padding: 5%;
+    width: 30%;
+    text-align: center;
+
+}
+
+.login_form input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login_form button {
+  background-color: black;
+  color: #ffcc00;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+}
+
+.login_form button:hover {
+  background-color: #ffcc00;
+  color: black;
+}
+
+
+.logged_in_div {
+    padding : 0;
+    margin : 0;
+    width: 19%;
+    float: left;
+    text-align: center;
+}
+
+.logged_in_div p {
+    font-size: 20px
+}
+
+.logged_in_div button a {
+    text-decoration: none;
+    color: #ffcc00;
+    padding: 20px 14px;
+    margin: 8px 0;
+    font-size: 20px;
+}
+
+.logged_in_div button a:hover {
+    text-decoration: none;
+    color: black
+}
+
+.logged_in_div button{
+    background-color: black;
+    color: #ffcc00;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+  }
+
+.logged_in_div button:hover {
+    background-color: #ffcc00;
+    color: black;
+  }
+
+.plots_div {
+    padding : 0;
+    margin : 0;
+    width: 79%;
+    float: left;
+}
+.plot_sub_div {
+   padding:2%;
+}
+
+.plots_div .tabs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.plots_div .tabs input[type="radio"]{
+    display: none;
+}
+
+.plots_div .tabs label{
+    padding: 10px;
+    background: lightgray;
+    border: 1px solid gray;
+
+}
+
+.plots_div .tabs .content{
+    padding: 25px;
+    width: 100%;
+    background: gray;
+    order: 1;
+    display: none;
+}
+
+.plots_div .tabs input[type="radio"]:checked + label + .content{
+    display: block;
+}
+
+.plots_div .tabs input[type="radio"]:checked + label {
+    background: gray;
+}
+
+.job_sel_div {
+    width: 79%;
+    float: left;
+    padding:0%;
+    margin: 0%;
+    border: 5px solid #ff0000;
+
+}
+
+.running {
+    float: left;
+    padding:0%;
+    margin: 0%;
+}
+.completed {
+    float: left;
+    padding:0%;
+    margin: 0%;
+}
+
+.job_sel_sub_div {
+   padding:0%;
+   margin: 0%;
+   width: 100%;
+}
+
+.job_sel_sub_div .tabs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.job_sel_div .tabs label{
+    padding: 0px 10px 0px 10px;
+
+}
+
+.job_sel_div .tabs .content{
+    padding: 10px;
+    order: 1;
+    display: none;
+}
+
+.job_sel_div .tabs input[type="radio"]:checked + label + .content{
+    display: block;
+}
+
+.job_sel_div .tabs input[type="radio"]:checked + label{
+    font-size: 25px;
+}
+
+.user_and_job {
+    padding: 0;
+    margin: 0;
+}
+.user_and_job select{
+    color: #000;
+    padding: 0 10px;
+    font-size: 15px;
+    width: 200px;
+}
+
+.user_and_job select option{
+    color: #000;
+    padding: 0 10px;
+}
+
+.job_details {
+    padding: 0;
+    margin: 0;
+}
+
+.job_details input[type="submit"]{
+    font-size: 20px;
+}
+
+.job_details input[type="text"]{
+    font-size: 15px;
+    width: 200px;
+}
+
+.job_details button {
+    background-color: black;
+    color: #ffcc00;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+.job_details button:hover {
+    background-color: #ffcc00;
+    color: black;
+  }
+
+.tabs label {
+    font-size: 20px;
+}
+
+.main_body_div .login_page_link{
+    margin: auto;
+    padding: 0;
+    width: 19%;
+    float: left;
+
+}
+
+.main_body_div .help_page{
+    margin: auto;
+    padding: 0;
+    width: 79%;
+    float: left;
+}
+
+.main_body_div .login_page_link button {
+  background-color: black;
+  color: #ffcc00;
+  padding: 7px 10px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+}
+
+.main_body_div .login_page_link button:hover {
+  background-color: #ffcc00;
+  color: black;
+}
+
+.help_body_div {
+    margin: auto;
+    padding: 0;
+    width: 80%;
+}
+		</style>
+	</head>
+	<body>
+        <div class="body">
+		{% include 'partials/_header.html' %}
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
